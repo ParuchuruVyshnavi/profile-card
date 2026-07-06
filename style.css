@@ -1,0 +1,1301 @@
+/* ==========================================
+   RESET & GOOGLE FONT
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+/* ==========================================
+   THEME VARIABLES
+========================================== */
+
+:root{
+
+    --bg:#09090f;
+    --card:#13131d;
+    --text:#ffffff;
+    --text-light:#bdbdbd;
+
+    --primary:#7b2ff7;
+    --secondary:#00d4ff;
+    --accent:#ff0080;
+
+    --glass:rgba(255,255,255,.08);
+
+    --border:rgba(255,255,255,.15);
+
+}
+
+body.light-theme{
+
+    --bg:#eef2ff;
+    --card:#ffffff;
+    --text:1e293b;
+    --text-light:#64748b;
+
+    --glass:rgba(255,255,255,.92);
+
+    --border:rgba(0,0,0,.08);
+
+}
+
+/* ==========================================
+   BODY
+========================================== */
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    background:var(--bg);
+
+    transition:.4s;
+
+    padding:25px;
+
+    position:relative;
+
+}
+
+/* ==========================================
+   BACKGROUND GLOW
+========================================== */
+
+.background-blur{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(140px);
+
+    z-index:0;
+
+}
+
+.blur1{
+
+    width:320px;
+
+    height:320px;
+
+    background:#7b2ff7;
+
+    top:-120px;
+
+    left:-80px;
+
+    animation:moveGlow1 8s ease-in-out infinite;
+
+}
+
+.blur2{
+
+    width:350px;
+
+    height:350px;
+
+    background:#00d4ff;
+
+    bottom:-120px;
+
+    right:-80px;
+
+    animation:moveGlow2 10s ease-in-out infinite;
+
+}
+
+@keyframes moveGlow1{
+
+    0%,100%{
+
+        transform:translate(0,0);
+
+    }
+
+    50%{
+
+        transform:translate(40px,30px);
+
+    }
+
+}
+
+@keyframes moveGlow2{
+
+    0%,100%{
+
+        transform:translate(0,0);
+
+    }
+
+    50%{
+
+        transform:translate(-50px,-30px);
+
+    }
+
+}
+
+/* ==========================================
+   CARD CONTAINER
+========================================== */
+
+.card-container{
+
+    perspective:1200px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.card{
+
+    width:400px;
+
+    padding:35px;
+
+    border-radius:35px;
+
+    background:var(--glass);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid var(--border);
+
+    position:relative;
+
+    overflow:hidden;
+
+    color:var(--text);
+
+    text-align:center;
+
+    box-shadow:
+
+        0 25px 60px rgba(0,0,0,.35);
+
+}
+
+/* Animated Border */
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-2px;
+
+    border-radius:35px;
+
+    background:linear-gradient(
+
+        45deg,
+
+        #ff0080,
+
+        #7b2ff7,
+
+        #00d4ff,
+
+        #00ff88,
+
+        #ffb703,
+
+        #ff0080
+
+    );
+
+    background-size:400%;
+
+    animation:borderAnimation 10s linear infinite;
+
+    z-index:-2;
+
+}
+
+.card::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:3px;
+
+    border-radius:32px;
+
+    background:var(--card);
+
+    z-index:-1;
+
+}
+
+@keyframes borderAnimation{
+
+    from{
+
+        background-position:0%;
+
+    }
+
+    to{
+
+        background-position:400%;
+
+    }
+
+}
+
+/* ==========================================
+   THEME BUTTON
+========================================== */
+
+.theme-btn{
+
+    position:absolute;
+
+    top:18px;
+
+    right:18px;
+
+    width:52px;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    color:var(--text);
+
+    font-size:20px;
+
+    background:linear-gradient(
+
+        135deg,
+
+        var(--primary),
+
+        var(--secondary)
+
+    );
+
+    transition:.4s;
+
+}
+
+.theme-btn:hover{
+
+    transform:rotate(180deg) scale(1.08);
+
+}
+
+/* ==========================================
+   PROFILE SECTION
+========================================== */
+
+.profile-wrapper{
+
+    position:relative;
+
+    width:190px;
+
+    height:190px;
+
+    margin:15px auto 25px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+/* Rotating Ring */
+
+.profile-ring{
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:50%;
+
+    background:conic-gradient(
+
+        #ff0080,
+        #7b2ff7,
+        #00d4ff,
+        #00ff88,
+        #ffb703,
+        #ff0080
+
+    );
+
+    animation:ringRotate 4s linear infinite,
+              ringGlow 2s ease-in-out infinite;
+
+}
+
+/* Inner Circle */
+
+.profile-ring::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:6px;
+
+    border-radius:50%;
+
+    background:var(--card);
+
+}
+
+/* Profile Image */
+
+.profile-img{
+
+    position:relative;
+
+    z-index:2;
+
+    width:172px;
+
+    height:172px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:4px solid #fff;
+
+    transition:.4s;
+
+}
+
+/* Hover */
+
+.profile-img:hover{
+
+    transform:scale(1.05);
+
+}
+
+/* Ring Rotate */
+
+@keyframes ringRotate{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* Ring Glow */
+
+@keyframes ringGlow{
+
+    0%{
+
+        box-shadow:
+
+        0 0 15px #ff0080,
+
+        0 0 25px #7b2ff7,
+
+        0 0 40px #00d4ff;
+
+    }
+
+    50%{
+
+        box-shadow:
+
+        0 0 30px #ff0080,
+
+        0 0 45px #7b2ff7,
+
+        0 0 70px #00d4ff;
+
+    }
+
+    100%{
+
+        box-shadow:
+
+        0 0 15px #ff0080,
+
+        0 0 25px #7b2ff7,
+
+        0 0 40px #00d4ff;
+
+    }
+
+}
+
+/* ==========================================
+   AVAILABLE BADGE
+========================================== */
+
+.status{
+
+    position:absolute;
+
+    bottom:8px;
+
+    right:-10px;
+
+    z-index:5;
+
+    background:var(--card);
+
+    color:var(--text);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:30px;
+
+    padding:8px 14px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    box-shadow:0 10px 20px rgba(0,0,0,.25);
+
+}
+
+.dot{
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:#00ff66;
+
+    animation:pulse 1.2s infinite;
+
+}
+
+@keyframes pulse{
+
+    0%{
+
+        transform:scale(1);
+
+        box-shadow:0 0 0 #00ff66;
+
+    }
+
+    50%{
+
+        transform:scale(1.4);
+
+        box-shadow:0 0 18px #00ff66;
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+        box-shadow:0 0 0 #00ff66;
+
+    }
+
+}
+
+/* ==========================================
+   NAME
+========================================== */
+
+.name{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    margin-bottom:15px;
+
+    background:linear-gradient(
+
+        90deg,
+
+        #ff0080,
+
+        #ffb703,
+
+        #00d4ff,
+
+        #00ff88,
+
+        #7b2ff7,
+
+        #ff0080
+
+    );
+
+    background-size:400%;
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    animation:nameGradient 6s linear infinite;
+
+}
+
+@keyframes nameGradient{
+
+    from{
+
+        background-position:0%;
+
+    }
+
+    to{
+
+        background-position:400%;
+
+    }
+
+}
+
+/* ==========================================
+   DEVELOPER BADGE
+========================================== */
+
+.developer-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    padding:12px 24px;
+
+    margin-bottom:28px;
+
+    border-radius:50px;
+
+    background:var(--glass);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    color:#00d4ff;
+
+    font-weight:600;
+
+    font-size:15px;
+
+    box-shadow:
+
+        0 0 20px rgba(0,212,255,.2);
+
+}
+
+.code-left,
+
+.code-right{
+
+    color:#ff0080;
+
+    font-size:18px;
+
+    font-weight:700;
+
+}
+
+#typing{
+
+    color:var(--text);
+
+    letter-spacing:.5px;
+
+}
+
+/* ==========================================
+   SOCIAL ICONS
+========================================== */
+
+.social-icons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:18px;
+
+    margin-bottom:30px;
+
+}
+
+.social-icons a{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-decoration:none;
+
+    font-size:22px;
+
+    color:var(--text);
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    transition:.4s;
+
+    backdrop-filter:blur(10px);
+
+}
+
+.social-icons a:hover{
+
+    transform:translateY(-8px) scale(1.12);
+
+    background:linear-gradient(
+        135deg,
+        #ff0080,
+        #7b2ff7,
+        #00d4ff
+    );
+
+    box-shadow:
+
+    0 0 20px #7b2ff7,
+
+    0 0 40px #00d4ff;
+
+}
+
+/* ==========================================
+   BUTTON GROUP
+========================================== */
+
+.button-group{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-bottom:35px;
+
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.btn{
+
+    flex:1;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:50px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    transition:.4s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.btn i{
+
+    margin-right:8px;
+
+}
+
+/* Follow */
+
+.follow-btn{
+
+    color:#fff;
+
+    background:linear-gradient(
+
+        135deg,
+
+        #ff0080,
+
+        #7b2ff7,
+
+        #00d4ff
+
+    );
+
+    background-size:300%;
+
+    animation:gradientButton 5s linear infinite;
+
+}
+
+.follow-btn:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+
+    0 0 25px #7b2ff7;
+
+}
+
+/* Message */
+
+.message-btn{
+
+    color:var(--text);
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.15);
+
+}
+
+.message-btn:hover{
+
+    background:#00d4ff;
+
+    color:#111;
+
+    transform:translateY(-5px);
+
+}
+
+/* Button Gradient */
+
+@keyframes gradientButton{
+
+    0%{
+
+        background-position:0%;
+
+    }
+
+    100%{
+
+        background-position:300%;
+
+    }
+
+}
+
+/* ==========================================
+   SKILLS TITLE
+========================================== */
+
+.skills-title{
+
+    margin-bottom:20px;
+
+}
+
+.skills-title span{
+
+    display:inline-block;
+
+    padding:8px 18px;
+
+    border-radius:30px;
+
+    background:var(--glass);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    color:#00d4ff;
+
+    font-size:13px;
+
+    letter-spacing:2px;
+
+}
+
+/* ==========================================
+   SKILLS GRID
+========================================== */
+
+.skills{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:15px;
+
+}
+
+/* Skill Card */
+
+.skill-card{
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:20px;
+
+    padding:18px;
+
+    transition:.4s;
+
+}
+
+.skill-card:hover{
+
+    transform:translateY(-8px);
+
+    background:rgba(255,255,255,.09);
+
+    box-shadow:
+
+    0 0 25px rgba(123,47,247,.35);
+
+}
+
+/* Skill Icon */
+
+.skill-icon{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:15px;
+
+    margin:auto;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(
+
+        135deg,
+
+        #ff0080,
+
+        #7b2ff7,
+
+        #00d4ff
+
+    );
+
+    color:#fff;
+
+    font-size:26px;
+
+    margin-bottom:15px;
+
+}
+
+.skill-card h3{
+
+    font-size:18px;
+
+    margin-bottom:6px;
+
+    color:var(--text);
+
+}
+
+.skill-card p{
+
+    font-size:13px;
+
+    color:var(--text-light);
+
+    margin-bottom:12px;
+
+}
+
+/* Progress Bar */
+
+.progress{
+
+    width:100%;
+
+    height:7px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.08);
+
+    overflow:hidden;
+
+}
+
+.progress span{
+
+    display:block;
+
+    height:100%;
+
+    border-radius:20px;
+
+    background:linear-gradient(
+
+        90deg,
+
+        #ff0080,
+
+        #7b2ff7,
+
+        #00d4ff
+
+    );
+
+    animation:progressMove 2s ease;
+
+}
+
+@keyframes progressMove{
+
+    from{
+
+        width:0;
+
+    }
+
+}
+
+/* ==========================================
+   RIPPLE EFFECT
+========================================== */
+
+.btn{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.ripple{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    transform:scale(0);
+
+    background:rgba(255,255,255,.35);
+
+    animation:ripple .6s linear;
+
+    pointer-events:none;
+
+}
+
+@keyframes ripple{
+
+    to{
+
+        transform:scale(4);
+
+        opacity:0;
+
+    }
+
+}
+
+/* ==========================================
+   CARD HOVER
+========================================== */
+
+.card{
+
+    transform-style:preserve-3d;
+
+    transition:
+
+    transform .4s ease,
+
+    box-shadow .4s ease,
+
+    background .4s ease;
+
+}
+
+.card:hover{
+
+    box-shadow:
+
+    0 25px 60px rgba(123,47,247,.35),
+
+    0 0 60px rgba(0,212,255,.15);
+
+}
+
+/* ==========================================
+   FLOATING ANIMATION
+========================================== */
+
+.card{
+
+    animation:floatCard 5s ease-in-out infinite;
+
+}
+
+@keyframes floatCard{
+
+    0%{
+
+        transform:translateY(0px);
+
+    }
+
+    50%{
+
+        transform:translateY(-10px);
+
+    }
+
+    100%{
+
+        transform:translateY(0px);
+
+    }
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:768px){
+
+.card{
+
+    width:360px;
+
+    padding:30px;
+
+}
+
+.skills{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.profile-wrapper{
+
+    width:170px;
+
+    height:170px;
+
+}
+
+.profile-img{
+
+    width:154px;
+
+    height:154px;
+
+}
+
+.name{
+
+    font-size:30px;
+
+}
+
+.developer-badge{
+
+    font-size:14px;
+
+}
+
+.button-group{
+
+    flex-direction:column;
+
+}
+
+}
+
+@media(max-width:480px){
+
+body{
+
+    padding:20px;
+
+}
+
+.card{
+
+    width:100%;
+
+    border-radius:28px;
+
+    padding:25px;
+
+}
+
+.skills{
+
+    grid-template-columns:1fr;
+
+}
+
+.profile-wrapper{
+
+    width:150px;
+
+    height:150px;
+
+}
+
+.profile-img{
+
+    width:136px;
+
+    height:136px;
+
+}
+
+.name{
+
+    font-size:26px;
+
+}
+
+.social-icons{
+
+    gap:12px;
+
+}
+
+.social-icons a{
+
+    width:48px;
+
+    height:48px;
+
+}
+
+.developer-badge{
+
+    padding:10px 16px;
+
+    font-size:13px;
+
+}
+
+}
+
+/* ==========================================
+   CUSTOM SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:linear-gradient(
+
+    #ff0080,
+
+    #7b2ff7,
+
+    #00d4ff
+
+    );
+
+    border-radius:20px;
+
+}
+
+/* ==========================================
+   SMOOTH TRANSITIONS
+========================================== */
+
+*{
+
+    transition:
+
+    background .4s,
+
+    color .4s,
+
+    border .4s,
+
+    box-shadow .4s,
+
+    transform .4s;
+
+}
